@@ -24,9 +24,17 @@ html {
 }
 
 body {
-  background: var(--color-paper);
+  background:
+    radial-gradient(circle at top, rgba(130, 46, 54, 0.1), transparent 32%),
+    radial-gradient(circle at 80% 20%, rgba(76, 95, 99, 0.1), transparent 26%),
+    var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-claret);
+  color: var(--color-white);
 }
 
 /* Mosaico del wordmark ALTEA — elemento de firma tomado del manual de marca (pág. 2) */

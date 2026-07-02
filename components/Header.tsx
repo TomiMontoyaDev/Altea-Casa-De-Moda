@@ -2,12 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Search, Heart, User } from "lucide-react";
+import {
+  Menu,
+  X,
+  Search,
+  Heart,
+  User,
+  ShoppingBag,
+  MessageCircle,
+} from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Colección", href: "#coleccion" },
-  { label: "Alquiler", href: "#alquiler" },
-  { label: "Novias", href: "#novias" },
+  { label: "Catálogo", href: "#catalogo" },
+  { label: "Reservas", href: "#reservas" },
+  { label: "Pagos", href: "#pagos" },
   { label: "Nosotros", href: "#propósito" },
   { label: "Contacto", href: "#contacto" },
 ];
@@ -32,7 +41,9 @@ export default function Header() {
         <a
           href="#top"
           className="font-display text-2xl tracking-wide"
-          style={{ color: scrolled ? "var(--color-ink)" : "var(--color-white)" }}
+          style={{
+            color: scrolled ? "var(--color-ink)" : "var(--color-white)",
+          }}
         >
           ALTEA
         </a>
@@ -43,7 +54,9 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className="font-detail text-[13px] uppercase tracking-[0.15em] transition-opacity hover:opacity-60"
-              style={{ color: scrolled ? "var(--color-ink)" : "var(--color-white)" }}
+              style={{
+                color: scrolled ? "var(--color-ink)" : "var(--color-white)",
+              }}
             >
               {link.label}
             </a>
@@ -52,18 +65,38 @@ export default function Header() {
 
         <div
           className="hidden items-center gap-6 md:flex"
-          style={{ color: scrolled ? "var(--color-ink)" : "var(--color-white)" }}
+          style={{
+            color: scrolled ? "var(--color-ink)" : "var(--color-white)",
+          }}
         >
           <Search size={18} strokeWidth={1.5} aria-label="Buscar" />
           <Heart size={18} strokeWidth={1.5} aria-label="Favoritos" />
           <User size={18} strokeWidth={1.5} aria-label="Mi cuenta" />
+          <a
+            href="#catalogo"
+            aria-label="Abrir carrito"
+            className="transition-opacity hover:opacity-70"
+          >
+            <ShoppingBag size={18} strokeWidth={1.5} />
+          </a>
+          <a
+            href="https://wa.me/573242227422?text=Hola%20ALTEA%2C%20quiero%20asesor%C3%ADa%20y%20reservar%20una%20cita."
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Escribir por WhatsApp"
+            className="transition-opacity hover:opacity-70"
+          >
+            <MessageCircle size={18} strokeWidth={1.5} />
+          </a>
         </div>
 
         <button
           className="md:hidden"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           onClick={() => setOpen((v) => !v)}
-          style={{ color: scrolled ? "var(--color-ink)" : "var(--color-white)" }}
+          style={{
+            color: scrolled ? "var(--color-ink)" : "var(--color-white)",
+          }}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>

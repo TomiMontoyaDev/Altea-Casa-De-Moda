@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import { Clock3, MapPin, MessageCircleMore, Sparkles } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,12 +33,13 @@ export default function Hero() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
       const letters = titleRef.current?.querySelectorAll(".letter");
+      if (!letters?.length) return;
 
       // Entrada: cada letra del wordmark sube y aparece en cascada
       gsap.from(letters, {
@@ -143,6 +146,57 @@ export default function Hero() {
           >
             Reservar alquiler
           </a>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.7 }}
+          className="mt-14 grid w-full max-w-4xl gap-4 border border-white/15 bg-white/5 p-4 backdrop-blur-sm sm:grid-cols-3"
+        >
+          <div className="flex items-center gap-3 text-left text-white">
+            <MapPin size={18} />
+            <div>
+              <p className="font-detail text-[11px] uppercase tracking-[0.25em] text-white/60">
+                Ubicación
+              </p>
+              <p className="mt-1 font-body text-sm text-white/90">
+                Av. 30 de Agosto #37-58, Pereira, Risaralda
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 text-left text-white">
+            <Clock3 size={18} />
+            <div>
+              <p className="font-detail text-[11px] uppercase tracking-[0.25em] text-white/60">
+                Horario
+              </p>
+              <p className="mt-1 font-body text-sm text-white/90">
+                Lunes a sábado · 9:00 AM - 12:30 PM y 1:30 PM - 5:00 PM
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://wa.me/573242227422?text=Hola%20ALTEA%2C%20quiero%20agendar%20una%20cita%20y%20ver%20el%20cat%C3%A1logo."
+            target="_blank"
+            rel="noreferrer"
+            className="group flex items-center gap-3 text-left text-white transition-opacity hover:opacity-80"
+          >
+            <MessageCircleMore size={18} />
+            <div>
+              <p className="font-detail text-[11px] uppercase tracking-[0.25em] text-white/60">
+                WhatsApp
+              </p>
+              <p className="mt-1 font-body text-sm text-white/90">
+                324 222 7422 · respuesta rápida
+              </p>
+            </div>
+          </a>
+        </motion.div>
+
+        <div className="mt-5 flex items-center gap-2 font-detail text-[11px] uppercase tracking-[0.3em] text-white/60">
+          <Sparkles size={14} />
+          Scroll inmersivo, catálogo dinámico y reservas directas.
         </div>
       </div>
     </section>

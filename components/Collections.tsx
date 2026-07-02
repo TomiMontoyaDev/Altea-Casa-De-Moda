@@ -6,21 +6,24 @@ import Reveal from "./Reveal";
 const COLLECTIONS = [
   {
     id: "coleccion",
-    title: "Colección nueva",
-    tag: "Venta",
-    description: "Vestuario vanguardista, diseños exclusivos y piezas por pedido.",
+    title: "Editorial viva",
+    tag: "Venta / tendencia",
+    description:
+      "Piezas de alto impacto con fotografía real, selección curada y disponibilidad pensada para destacar.",
   },
   {
     id: "alquiler",
-    title: "Alquiler de eventos",
-    tag: "Alquiler",
-    description: "Grados, quinceañeras, primeras comuniones y eventos sociales.",
+    title: "Alquiler premium",
+    tag: "Eventos",
+    description:
+      "Vestidos para graduaciones, celebraciones, sesiones y ocasiones donde el look necesita presencia.",
   },
   {
     id: "novias",
     title: "Novias",
     tag: "Alquiler / Venta",
-    description: "Espacio exclusivo ambientado, asesoría de imagen incluida.",
+    description:
+      "Acompañamiento de imagen, ajustes y un espacio pensado para pruebas tranquilas y asesoría cercana.",
   },
 ];
 

@@ -2,19 +2,19 @@ import Reveal from "./Reveal";
 
 const STEPS = [
   {
-    label: "Por qué",
+    label: "Descubre",
     accent: "var(--color-claret)",
-    text: "Acompañamos a cada persona para que exprese su esencia con seguridad y elegancia, entregando experiencias únicas en cada ocasión especial.",
+    text: "Explora un catálogo amplio con filtros por venta, alquiler, novias y accesorios, acompañado de imágenes reales y piezas curadas para impactar.",
   },
   {
-    label: "Cómo",
+    label: "Reserva",
     accent: "var(--color-light-coffee)",
-    text: "Asesoría de imagen, ajuste a medida, espacios exclusivos para prepararse antes del evento y un catálogo curado de piezas de alto valor.",
+    text: "Agenda tu cita, envía la fecha y hora por WhatsApp y deja listo el flujo de atención para probar, ajustar y confirmar tu look.",
   },
   {
-    label: "Qué",
+    label: "Compra",
     accent: "var(--color-greenish-gray)",
-    text: "Alquiler y venta de vestidos para grados, quinceañeras, novias, primeras comuniones, bautizos y eventos sociales en general.",
+    text: "El carrito centraliza el pedido y el checkout queda preparado para conectar API PSE, tarjeta o confirmación asistida.",
   },
 ];
 
