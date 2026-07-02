@@ -1,0 +1,170 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ProductCategory {
+  VENTA
+  ALQUILER
+  NOVIAS
+  ACCESORIOS
+}
+
+enum OrderKind {
+  PURCHASE
+  RESERVATION
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  RESERVED
+  PAID
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentMethod {
+  PSE
+}
+
+enum InventoryMovementKind {
+  INBOUND
+  SOLD
+  RENTED
+  RESERVED
+  ADJUSTMENT
+}
+
+enum NotificationType {
+  ORDER_CREATED
+  RESERVATION_CREATED
+  PAYMENT_PENDING
+  PAYMENT_CONFIRMED
+  STOCK_IN
+  SOLD
+  RENTED
+  LOW_STOCK
+  OUT_OF_STOCK
+}
+
+enum NotificationSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+model Product {
+  id          String               @id @default(cuid())
+  slug        String               @unique
+  name        String
+  category    ProductCategory
+  price       Int
+  stock       Int                  @default(0)
+  image       String?
+  description String?
+  active      Boolean              @default(true)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+  orderItems  OrderItem[]
+  movements   InventoryMovement[]
+  notifications Notification[]
+}
+
+model Customer {
+  id               String       @id @default(cuid())
+  fullName         String
+  documentNumber   String       @unique
+  phone            String
+  email            String?
+  city             String?
+  address          String?
+  idPhotoUrl       String?
+  signatureUrl     String?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  orders           Order[]
+  reservations     Reservation[]
+}
+
+model Order {
+  id                String           @id @default(cuid())
+  orderNumber       String           @unique
+  kind              OrderKind
+  status            OrderStatus      @default(PENDING_PAYMENT)
+  paymentMethod     PaymentMethod    @default(PSE)
+  paymentReference  String?
+  paymentUrl        String?
+  paymentProvider   String?
+  subtotal          Int
+  shippingCost      Int              @default(0)
+  total             Int
+  shippingCity      String?
+  shippingAddress   String?
+  notes             String?
+  documentPhotoUrl  String?
+  signatureUrl      String?
+  paidAt            DateTime?
+  customerId        String
+  customer          Customer         @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  items             OrderItem[]
+  reservation       Reservation?
+  notifications     Notification[]
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+}
+
+model OrderItem {
+  id           String    @id @default(cuid())
+  orderId      String
+  productId    String
+  product      Product   @relation(fields: [productId], references: [id], onDelete: Restrict)
+  order        Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productName  String
+  unitPrice    Int
+  quantity     Int
+  lineTotal    Int
+  createdAt    DateTime  @default(now())
+}
+
+model Reservation {
+  id              String       @id @default(cuid())
+  orderId         String       @unique
+  customerId      String
+  order           Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  customer        Customer     @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  scheduledAt     DateTime?
+  deliveryMode    String?
+  city            String?
+  address         String?
+  note            String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+model InventoryMovement {
+  id          String                @id @default(cuid())
+  productId   String
+  product     Product               @relation(fields: [productId], references: [id], onDelete: Cascade)
+  kind        InventoryMovementKind
+  quantity    Int
+  note        String?
+  reference   String?
+  createdAt   DateTime              @default(now())
+}
+
+model Notification {
+  id           String              @id @default(cuid())
+  type         NotificationType
+  severity     NotificationSeverity @default(INFO)
+  title        String
+  message      String
+  readAt       DateTime?
+  productId    String?
+  orderId      String?
+  product      Product?            @relation(fields: [productId], references: [id], onDelete: SetNull)
+  order        Order?              @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  createdAt    DateTime            @default(now())
+}
