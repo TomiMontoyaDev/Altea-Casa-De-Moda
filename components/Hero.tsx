@@ -146,6 +146,12 @@ export default function Hero() {
           >
             Reservar alquiler
           </a>
+          <a
+            href="/login"
+            className="border border-white/40 px-8 py-3 font-detail text-[13px] uppercase tracking-[0.15em] text-white/90 transition-colors hover:border-white hover:bg-white hover:text-ink"
+          >
+            Ingreso admin
+          </a>
         </div>
 
         <motion.div

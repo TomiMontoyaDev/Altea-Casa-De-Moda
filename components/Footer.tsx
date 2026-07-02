@@ -7,6 +7,12 @@ export default function Footer() {
           Av. 30 de Agosto #37-58 · Pereira, Risaralda
         </p>
         <div className="flex flex-wrap justify-center gap-6 font-detail text-xs uppercase tracking-[0.2em] text-white/70">
+          <a href="/login" className="hover:text-white">
+            Login
+          </a>
+          <a href="/dashboard" className="hover:text-white">
+            Dashboard
+          </a>
           <a
             href="https://wa.me/573242227422?text=Hola%20ALTEA%2C%20quiero%20informaci%C3%B3n%20sobre%20cat%C3%A1logo%2C%20reservas%20y%20pagos."
             target="_blank"

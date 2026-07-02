@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { label: "Catálogo", href: "#catalogo" },
   { label: "Reservas", href: "#reservas" },
   { label: "Pagos", href: "#pagos" },
+  { label: "Dashboard", href: "/dashboard" },
   { label: "Nosotros", href: "#propósito" },
   { label: "Contacto", href: "#contacto" },
 ];
@@ -73,6 +74,13 @@ export default function Header() {
           <Heart size={18} strokeWidth={1.5} aria-label="Favoritos" />
           <User size={18} strokeWidth={1.5} aria-label="Mi cuenta" />
           <a
+            href="/login"
+            className="rounded-full border border-current px-3 py-1 font-detail text-[11px] uppercase tracking-[0.2em] transition-opacity hover:opacity-70"
+            aria-label="Ingresar al dashboard"
+          >
+            Admin
+          </a>
+          <a
             href="#catalogo"
             aria-label="Abrir carrito"
             className="transition-opacity hover:opacity-70"
@@ -122,6 +130,12 @@ export default function Header() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="/login"
+                className="mt-2 inline-flex items-center justify-center border border-ink px-4 py-3 font-detail text-[11px] uppercase tracking-[0.2em] text-ink"
+              >
+                Entrar al dashboard
+              </a>
             </nav>
           </motion.div>
         )}
