@@ -1,0 +1,54 @@
+@import "tailwindcss";
+/*
+  Paleta oficial ALTEA (manual de marca, pág. 20).
+  No inventar tonos nuevos: todo color debe salir de esta lista.
+*/
+@theme {
+  --color-ink: #1c1a17; /* fondo oscuro de marca (secciones "Mago") */
+  --color-paper: #ece8df; /* warm gray claro, fondo principal */
+  --color-warm-gray: #ddd8d2;
+  --color-greenish-gray: #4c5f63;
+  --color-light-coffee: #a78569;
+  --color-claret: #822e36;
+  --color-white: #ffffff;
+
+  --font-display:
+    "Bodoni Moda", "Playfair Display", serif; /* wordmark / hero — aproximación al logo original */
+  --font-heading: "Montserrat", sans-serif; /* títulos y textos, pág. 21 */
+  --font-body: "Roboto", sans-serif; /* tipografía secundaria, pág. 22 */
+  --font-detail: "DM Sans", sans-serif; /* sustituto de Brother 1816, pág. 23 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+/* Mosaico del wordmark ALTEA — elemento de firma tomado del manual de marca (pág. 2) */
+.wordmark-tile {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 118px,
+    transparent 118px
+  );
+}
+
+.wordmark-tile span {
+  font-family: var(--font-display);
+  color: rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
