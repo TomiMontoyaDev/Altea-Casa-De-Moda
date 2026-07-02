@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -37,6 +38,14 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen bg-ink px-6 py-20 text-white">
+      <div className="mx-auto mb-8 max-w-5xl">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 font-detail text-[11px] uppercase tracking-[0.24em] text-white/60 transition-colors hover:text-white"
+        >
+          ← Volver a la página principal
+        </Link>
+      </div>
       <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="space-y-6">
           <p className="font-detail text-[11px] uppercase tracking-[0.3em] text-white/45">
